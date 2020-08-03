@@ -48,6 +48,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <a href="#apartment" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-building"></i> Apartment</a>
     <a href="#contact" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-envelope"></i> Contact</a>
   </div>
+  
+  <form action="new_apartment.html" method="get" target="_blank">
+         <button type="submit" class="w3-btn w3-block w3-red w3-border">Add New Apartment</button>
+  </form>
+  <form action="update_apartment.php" method="get" target="_blank">
+         <button type="submit" class="w3-btn w3-block w3-red w3-border">Update Apartment</button>
+  </form>
+  <form action="delete_apartment.php" method="get" target="_blank">
+         <button type="submit" class="w3-btn w3-block w3-red w3-border">Delete Apartment</button>
+  </form>
 </nav>
 
 <!-- Top menu on small screens -->
