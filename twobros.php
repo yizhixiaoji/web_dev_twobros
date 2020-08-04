@@ -1,4 +1,4 @@
- <html>
+<html>
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -223,6 +223,13 @@ function showDivs(n) {
           echo stripslashes($row['pictures']);
           echo "<br />";
           echo "</p>";
+          echo "<center>";
+          echo "<div>";
+          echo "<img src=\"/images/kitchen_freeuse/{$row['apartmentId']}.jpg\" style=\"width:320px;height:200px;\">";
+          echo "<br />";
+          echo "<img src=\"/images/bedroom_freeuse/{$row['apartmentId']}.jpg\" style=\"width:320px;height:200px;\">";
+          echo "</div>";
+          echo "</center>";
       }
     }
 ?>
