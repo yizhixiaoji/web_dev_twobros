@@ -10,10 +10,12 @@
         .mySlides {display: none}
         </style>
         
+  
 <head>
   <title>TwoBros - Delete Apartment Record</title>
 </head>
 <body class="w3-content w3-border-left w3-border-right">
+<p><a href="twobros.php">Back to Home</a></p>
     
 <?php
 

@@ -144,10 +144,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           echo "</p>";
           echo "<hr>";
       }
+      echo "<label><i class='fa fa-building'></i> Apartments found:</label>";
+      echo $num_results;
     }
 ?>
-    <label><i class="fa fa-building"></i> Apartments found:</label>
-    <?php echo $num_results;?><br>
+
     </div>
 
 
