@@ -19,11 +19,9 @@
     <div class="w3-container w3-display-container w3-padding-16">
   <p><a href="twobros.php">Back to Home</a></p>
 
-  <form action="insert_apartment.php" method="post">
+  <form action="insert_apartment.php" method="post" enctype="multipart/form-data">
     <table border="0">
-        <p><label>Apartment ID</label></p>
-        <input class="w3-input w3-border" type="text" name="apartmentId">
-
+      
         <p><label>Street Address</label></p>
         <input class="w3-input w3-border" type="text" name="streetAddress">
 
@@ -38,8 +36,12 @@
 
         <p><label>Pictures</label></p>
         <input class="w3-input w3-border" type="text" name="pictures">
+
+        <br>Attach Photo:<br>
+        <input type="file" name="fileToUpload"><br><br>
+
       <tr>
-        <td colspan="2"><input type="submit" value="Register"></td>
+        <td colspan="2"><input type="submit" value="Upload"></td>
       </tr>
     </table>
   </form>

@@ -53,7 +53,7 @@
       }
 
     // The UPDATE SQL statement
-    $query = "UPDATE apartments SET apartmentId='$apartmentId', streetAddress='$streetAddress', unitNumber = '$unitNumber', price = '$price' , size = '$size', pictures = '$pictures' WHERE apartmentId = '$oldapartmentId'";
+    $query = "UPDATE apartment SET apartmentId='$apartmentId', streetAddress='$streetAddress', unitNumber = '$unitNumber', price = '$price' , size = '$size', pictures = '$pictures' WHERE apartmentId = '$oldapartmentId'";
     // echo $query;
 
     $result = $db->query($query);
@@ -67,7 +67,7 @@
     }
  }
 
-  $query = "select * from apartments";
+  $query = "select * from apartment";
   $result = $db->query($query);
   
   $num_results = $result->num_rows;
