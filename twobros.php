@@ -43,6 +43,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       -->
       <p><button class="w3-button w3-red w3-round-xxlarge w3-border w3-left-align" type="submit" name='submit-button'><i class="fa fa-search w3-margin-right"></i> Search </button></p>
     </form>
+
+    <button onclick="window.location.href='favolist.php'">My Favorite List</button>
+
   </div>
   <div class="w3-bar-block">
     <a href="#apartment" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-building"></i> Apartment</a>
@@ -170,6 +173,10 @@ function showDivs(n) {
   dots[slideIndex-1].className += " w3-opacity-off";
 }
 </script>
+
+
+<html>
+
 <?php
   $mysqli_link = mysqli_connect('localhost', 'bookorama', '123456789', 'twobros');
   // Check connection
@@ -202,12 +209,12 @@ function showDivs(n) {
       $result = mysqli_query($mysqli_link, $query) or die(mysql_error());
 
       $num_results = $result->num_rows;
-      echo "<p style='text-align:center;'>Number of books found: " . $num_results . "</p>";
+      echo "<p style='text-align:center;'>Number of apartments found: " . $num_results . "</p>";
       mysqli_close($mysqli_link);
 
       for ($i=0; $i <$num_results; $i++) {
           $row = $result->fetch_assoc();
-          echo "<p style='text-align:center;'><strong> Street Adress: ";
+          echo "<p style='text-align:center;'><strong> Street Address: ";
           echo htmlspecialchars(stripslashes($row['streetAddress']));
           echo "</strong><br />";
           echo "<p style='text-align:center;'> Unit Number: ";
@@ -230,8 +237,17 @@ function showDivs(n) {
           echo "<img src=\"/images/bedroom_freeuse/{$row['apartmentId']}.jpg\" style=\"width:320px;height:200px;\">";
           echo "</div>";
           echo "</center>";
+
+          echo "<div style='text-align:right;font-weight: bold;'>  ";
+          echo "<p id=\"demo\" onclick=\"myFunction()\">Click me to turn the text in red to add the apartment to your favo list❤.</p>";
+          echo "</right>";
+          echo "</div>";
       }
     }
 ?>
-</body>
-</html>
+
+<script>
+          function myFunction() {
+          document.getElementById("demo").style.color = "red";
+      }
+</script>
