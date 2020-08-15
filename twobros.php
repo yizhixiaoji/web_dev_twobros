@@ -44,7 +44,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <p><button class="w3-button w3-red w3-round-xxlarge w3-border w3-left-align" type="submit" name='submit-button'><i class="fa fa-search w3-margin-right"></i> Search </button></p>
     </form>
 
-    <button onclick="window.location.href='favolist.php'">My Favorite List</button>
+    <button onclick="window.location.href='favolist.php'"><i class="fa fa-heart w3-margin-right"></i>My Favorite List</button>
 
   </div>
   <div class="w3-bar-block">
@@ -109,7 +109,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           }
       }
       // builds the query
-      $query = "SELECT * FROM apartments ";
+      $query = "SELECT * FROM apartment ";
       // if there are conditions defined
       if(count($conditions) > 0) {
           // append the conditions

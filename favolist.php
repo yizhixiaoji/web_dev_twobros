@@ -1,5 +1,5 @@
 <html>
-<title>W3.CSS Template</title>
+<title>TwoBros Home Page</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -43,6 +43,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       -->
       <p><button class="w3-button w3-red w3-round-xxlarge w3-border w3-left-align" type="submit" name='submit-button'><i class="fa fa-search w3-margin-right"></i> Search </button></p>
     </form>
+
+    <button onclick="window.location.href='favolist.php'"><i class="fa fa-heart w3-margin-right"></i>My Favorite List</button>
+
   </div>
   <div class="w3-bar-block">
     <a href="#apartment" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-building"></i> Apartment</a>
@@ -76,18 +79,107 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <div class="w3-hide-large" style="margin-top:80px"></div>
 
   <!-- Slideshow Header -->
-    <h1 class="w3-text-green">Your Favorite List</h2>
-  <div class="w3-container" id="apartment">
-    <h2 class="w3-text-green">The Apartment</h2>
-    <div class="w3-display-container mySlides">
-    <img src="/w3images/livingroom.jpg" style="width:100%;margin-bottom:-6px">
-      <div class="w3-display-bottomleft w3-container w3-black">
-        <p>View 1</p>
-      </div>
-    </div>
-  </div>
+  <div class="w3-container">
+    <h2 class="w3-text-red">Our Mission</h2>
+    <p><img src="images/logo.png" alt="logo" style="float:left;width:200px;height:110px;"></p>
+    <p>We are here to help students find the right place to live, to study and to enjoy the local community here in NYC. We find afforable housing and handle all necessary documentation for our clients. There is nothing to worry about!</p>
+  </div> <hr>
 
- 
+
+  <div class="w3-container" id='apartments'>
+    <h2 class="w3-text-red">Your Favorite Apartment Listings</h2>
+    <?php
+  $mysqli_link = mysqli_connect('localhost', 'bookorama', '123456789', 'twobros');
+  // Check connection
+  if (mysqli_connect_errno()) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  
+  
+  // builds the query
+  $query0 = "SELECT * FROM apartment WHERE apartmentId IN (SELECT apartmentId FROM user_apt_like where customerId = 10)";
+
+  $result = mysqli_query($mysqli_link, $query0) or die(mysqli_connect_error());
+
+  $num_results = $result->num_rows;
+  mysqli_close($mysqli_link);
+
+  for ($i=0; $i <$num_results; $i++) {
+    $row = $result->fetch_assoc();
+    echo "<p style='margin-left: 1;'><strong> Apartment ID: ";
+    echo stripslashes($row['apartmentId']);
+    echo "</strong><br>";
+    echo "<img src='uploads/".$row['pictures']."' style='float:right;width:220;height:220;'>";
+    echo "<br>";
+    echo "<p style='margin-left: 1;'> Street Adress: ";
+    echo htmlspecialchars(stripslashes($row['streetAddress']));
+    echo "<br>";
+    echo "<p style='margin-left: 1;'> Unit Number: ";
+    echo stripslashes($row['unitNumber']);
+    echo "<br>";
+    echo "<p style='margin-left: 1;'> Price: ";
+    echo stripslashes($row['price']);
+    echo "<br>";
+    echo "<p style='margin-left: 1;'> Size: ";
+    echo stripslashes($row['size']);
+    echo "<br>";
+    echo "<p style='margin-left: 1;'> Picture: ";
+    echo "<br>";
+    echo "</p>";
+    echo "<hr>";
+  
+    echo "<div style='text-align:right;font-weight: bold;'>  ";
+    echo "<p id=$i onclick=\"togglefavolist(this.id)\">Click me to turn the text in red to add the apartment to your favo list❤.</p>";
+
+    echo "</right>";
+    echo "</div>";
+}
+
+//---------------
+  if(isset($_POST['submit-button'])) {
+      // define the list of fields
+      $fields = array('streetAddress', 'price', 'size');
+      $conditions = array();
+      
+      // loop through the defined fields
+      foreach($fields as $field){
+          // if the field is set and not empty
+          if(isset($_POST[$field]) && $_POST[$field] != '') {
+              // create a new condition while escaping the value inputed by the user (SQL Injection)
+              $conditions[] = "`$field` LIKE '%" . $_POST[$field] . "%'";
+          }
+      }
+
+      
+      
+      
+     // echo "<p>Query: " . $query . "</p>";
+   
+     
+
+      
+      
+
+
+      echo "<label><i class='fa fa-building'></i> Apartments found:</label>";
+      echo $num_results;
+    }
+?>
+
+    </div>
+  
+<script>
+    function togglefavolist(itemId) {
+      if (document.getElementById(itemId).style.color === "red"){
+        document.getElementById(itemId).style.color = "black";
+      } else {
+        document.getElementById(itemId).style.color = "red";
+      }
+    } 
+
+</script>
+  
+
 
 <!-- End page content -->
 </div>
@@ -132,68 +224,7 @@ function showDivs(n) {
   dots[slideIndex-1].className += " w3-opacity-off";
 }
 </script>
-<?php
-  $mysqli_link = mysqli_connect('localhost', 'bookorama', '123456789', 'twobros');
-  // Check connection
-  if (mysqli_connect_errno()) {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
-
-  if(isset($_POST['submit-button'])) {
-      // define the list of fields
-      $fields = array('streetAddress', 'price', 'size');
-      $conditions = array();
-      
-      // loop through the defined fields
-      foreach($fields as $field){
-          // if the field is set and not empty
-          if(isset($_POST[$field]) && $_POST[$field] != '') {
-              // create a new condition while escaping the value inputed by the user (SQL Injection)
-              $conditions[] = "`$field` LIKE '%" . $_POST[$field] . "%'";
-          }
-      }
-      // builds the query
-      $query = "SELECT * FROM apartments ";
-      // if there are conditions defined
-      if(count($conditions) > 0) {
-          // append the conditions
-          $query .= "WHERE " . implode (' AND ', $conditions); // you can change to 'OR', but I suggest to apply the filters cumulative
-      }
-     // echo "<p>Query: " . $query . "</p>";
-
-      $result = mysqli_query($mysqli_link, $query) or die(mysql_error());
-
-      $num_results = $result->num_rows;
-      echo "<p style='text-align:center;'>Number of apartments found: " . $num_results . "</p>";
-      mysqli_close($mysqli_link);
-
-      for ($i=0; $i <$num_results; $i++) {
-          $row = $result->fetch_assoc();
-          echo "<p style='text-align:center;'><strong> Street Address: ";
-          echo htmlspecialchars(stripslashes($row['streetAddress']));
-          echo "</strong><br />";
-          echo "<p style='text-align:center;'> Unit Number: ";
-          echo stripslashes($row['unitNumber']);
-          echo "<br />";
-          echo "<p style='text-align:center;'> Price: ";
-          echo stripslashes($row['price']);
-          echo "<br />";
-          echo "<p style='text-align:center;'> Size: ";
-          echo stripslashes($row['size']);
-          echo "<br />";
-          echo "<p style='text-align:center;'> Views: ";
-          echo stripslashes($row['pictures']);
-          echo "<br />";
-          echo "</p>";
-          echo "<center>";
-          echo "<div>";
-          echo "<img src=\"/images/kitchen_freeuse/{$row['apartmentId']}.jpg\" style=\"width:320px;height:200px;\">";
-          echo "<br />";
-          echo "<img src=\"/images/bedroom_freeuse/{$row['apartmentId']}.jpg\" style=\"width:320px;height:200px;\">";
-          echo "</div>";
-          echo "</center>";
-      }
-    }
-?>
-</body>
-</html>
+  
+  
+  
+ 
