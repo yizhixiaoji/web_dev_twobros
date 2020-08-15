@@ -86,7 +86,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   </div> <hr>
 
 
-  <div class="w3-container" id='apartment'>
+  <div class="w3-container" id='apartments'>
     <h2 class="w3-text-red">Apartment Listings</h2>
     <?php
   $mysqli_link = mysqli_connect('localhost', 'bookorama', '123456789', 'twobros');
@@ -109,7 +109,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           }
       }
       // builds the query
-      $query = "SELECT * FROM apartment ";
+      $query = "SELECT * FROM apartments ";
       // if there are conditions defined
       if(count($conditions) > 0) {
           // append the conditions
@@ -148,7 +148,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           echo "<hr>";
         
           echo "<div style='text-align:right;font-weight: bold;'>  ";
-          echo "<p id=\"demo\" onclick=\"myFunction()\">Click me to turn the text in red to add the apartment to your favo list❤.</p>";
+          echo "<p id=$i onclick=\"myFunction(this.id)\">Click me to turn the text in red to add the apartment to your favo list❤.</p>";
+
           echo "</right>";
           echo "</div>";
       }
@@ -160,8 +161,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     </div>
   
 <script>
-          function myFunction() {
-          document.getElementById("demo").style.color = "red";
+          function myFunction(itemId) {
+          document.getElementById(itemId).style.color = "red";
       }
 </script>
   
