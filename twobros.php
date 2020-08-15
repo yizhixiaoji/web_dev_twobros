@@ -43,6 +43,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       -->
       <p><button class="w3-button w3-red w3-round-xxlarge w3-border w3-left-align" type="submit" name='submit-button'><i class="fa fa-search w3-margin-right"></i> Search </button></p>
     </form>
+
+    <button onclick="window.location.href='favolist.php'">My Favorite List</button>
+
   </div>
   <div class="w3-bar-block">
     <a href="#apartment" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-building"></i> Apartment</a>
@@ -143,6 +146,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           echo "<br>";
           echo "</p>";
           echo "<hr>";
+        
+          echo "<div style='text-align:right;font-weight: bold;'>  ";
+          echo "<p id=\"demo\" onclick=\"myFunction()\">Click me to turn the text in red to add the apartment to your favo list❤.</p>";
+          echo "</right>";
+          echo "</div>";
       }
       echo "<label><i class='fa fa-building'></i> Apartments found:</label>";
       echo $num_results;
@@ -150,6 +158,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 ?>
 
     </div>
+  
+<script>
+          function myFunction() {
+          document.getElementById("demo").style.color = "red";
+      }
+</script>
+  
 
 
 <!-- End page content -->
@@ -195,6 +210,7 @@ function showDivs(n) {
   dots[slideIndex-1].className += " w3-opacity-off";
 }
 </script>
-?>
-</body>
-</html>
+  
+  
+  
+ 
