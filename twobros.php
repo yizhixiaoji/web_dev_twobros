@@ -148,7 +148,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           echo "<hr>";
         
           echo "<div style='text-align:right;font-weight: bold;'>  ";
-          echo "<p id=$i onclick=\"myFunction(this.id)\">Click me to turn the text in red to add the apartment to your favo list❤.</p>";
+          echo "<p id=$i onclick=\"togglefavolist(this.id)\">Click me to turn the text in red to add the apartment to your favo list❤.</p>";
 
           echo "</right>";
           echo "</div>";
@@ -161,9 +161,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     </div>
   
 <script>
-          function myFunction(itemId) {
-          document.getElementById(itemId).style.color = "red";
+    function togglefavolist(itemId) {
+      if (document.getElementById(itemId).style.color === "red"){
+        document.getElementById(itemId).style.color = "black";
+      } else {
+        document.getElementById(itemId).style.color = "red";
       }
+    } 
+
 </script>
   
 
