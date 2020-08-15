@@ -25,15 +25,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <input class="w3-input w3-border" type="text" placeholder="Manhattan" name="area" required>
       -->
 
-      <p><label><i class="fa fa-map-marker"></i> Address</label></p>
-      <input class="w3-input w3-border" type="text" name="streetAddress">
-
-      <p><label><i class="fa fa-money"></i> Price</label></p>
-      <input class="w3-input w3-border" type="text" name="price">  
-      
-      <p><label><i class="fa fa-dot-circle-o"></i> Floor Size</label></p>
-      <input class="w3-input w3-border" type="text" name="size">
-
       <!-- 
       <p><label><i class="fa fa-bed"></i> Bedrooms</label></p>
       <input class="w3-input w3-border" type="number" value="1" name="bedroom" min="0" max="6">       
@@ -41,8 +32,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <p><label><i class="fa fa-bath"></i> Bathrooms</label></p>
       <input class="w3-input w3-border" type="number" value="1" name="bathroom" min="0" max="4"> 
       -->
-      <p><button class="w3-button w3-red w3-round-xxlarge w3-border w3-left-align" type="submit" name='submit-button'><i class="fa fa-search w3-margin-right"></i> Search </button></p>
     </form>
+
+    <button onclick="window.location.href='twobros.php'"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Go back to home page</button>
 
     <button onclick="window.location.href='favolist.php'"><i class="fa fa-heart w3-margin-right"></i>My Favorite List</button>
 
@@ -96,7 +88,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   }
   
   
-  // builds the query
+  // builds the query // Please be aware the customerId need to be resolved with variables
   $query0 = "SELECT * FROM apartment WHERE apartmentId IN (SELECT apartmentId FROM user_apt_like where customerId = 10)";
 
   $result = mysqli_query($mysqli_link, $query0) or die(mysqli_connect_error());
